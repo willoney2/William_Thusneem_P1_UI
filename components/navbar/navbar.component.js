@@ -1,3 +1,4 @@
+import { Router } from "../../util/router";
 
 const NAVBAR_ELEMENT = document.getElementById('navbar');
 
@@ -19,10 +20,27 @@ function NavbarComponent(){
                 cb();
             })
             .catch(err => console.error(err));
-        }
+        } 
     }
 
-    function injectStylecheet(){
+    function navigateToCatalog(){
+        console.log("navigating to catalog");
+    }
+
+    function navigatingToDashboard(){
+        console.log("navigating to dashboard");
+    }
+
+    function navigatingToHome(){
+        console.log("navigating to home");
+    }
+
+    function navigatingToLogin(e){
+        console.log("navigating to login");
+        Router.navigate(e.target.dataset.route)
+    }
+
+    function injectStylesheet(){
        // let dynamicStyle = document.getElementById('');
     }
 
@@ -31,7 +49,12 @@ function NavbarComponent(){
         injectStylesheet();
 
         injectTemplate(() => {
-            //navigating stuff
+            document.getElementById('catalog').addEventListener('click', navigateToCatalog);
+            document.getElementById('dashboard').addEventListener('click', navigatingToDashboard);
+            document.getElementById('home').addEventListener('click', navigatingToHome);
+            document.getElementById('login').addEventListener('click', navigatingToLogin);
         });
     }
 }
+
+export default new NavbarComponent();
